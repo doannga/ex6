@@ -1,6 +1,7 @@
 import 'package:ex6/cart/cart_state.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/cart_item.dart';
 import 'cart_item_widget.dart';
 
 class CartListScreen extends StatefulWidget {
@@ -11,17 +12,28 @@ class CartListScreen extends StatefulWidget {
 }
 
 class _CartListScreenState extends State<CartListScreen> {
-  double checkoutPrice = 0;
-
   @override
   Widget build(BuildContext context) {
+    double checkoutPrice = 0;
     Size size = MediaQuery.of(context).size;
-    setState(() {
-      checkoutPrice;
-    });
+    for (CartItem cart in cartList) {
+      checkoutPrice += cart.totalPrice;
+    }
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: ElevatedButton(
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/').then(
+              (_) {
+                setState(() {});
+              },
+            );
+          },
+        ),
         title: const Text('My Cart'),
       ),
       body: ListView.builder(
@@ -30,15 +42,10 @@ class _CartListScreenState extends State<CartListScreen> {
         itemBuilder: (context, index) {
           var cart = cartList[index];
           //checkoutPrice += cart.totalPrice;
-
           return CartItemWidget(
             cartItem: cart,
             refresh: () {
-              print(
-                  'thuynga.dt: check updating checkoutPrice variant $checkoutPrice');
-              setState(() {
-                checkoutPrice += cart.totalPrice;
-              });
+              setState(() {});
             },
           );
         },
@@ -63,7 +70,7 @@ class _CartListScreenState extends State<CartListScreen> {
                   ),
                   const Spacer(),
                   Text(
-                    'Rs. ${totalPrice()}',
+                    'Rs. $checkoutPrice',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

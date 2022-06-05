@@ -7,9 +7,11 @@ class CartItemWidget extends StatefulWidget {
   final CartItem cartItem;
   final Function() refresh;
 
-  const CartItemWidget(
-      {Key? key, required this.cartItem, required this.refresh})
-      : super(key: key);
+  const CartItemWidget({
+    Key? key,
+    required this.cartItem,
+    required this.refresh,
+  }) : super(key: key);
 
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
@@ -62,6 +64,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         onPressed: () {
                           cartList.remove(cartItem);
                           hmCart.remove(cartItem.product.id);
+                          widget.refresh();
                           setState(() {});
                         },
                         icon: const Icon(
@@ -119,12 +122,12 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       ),
                       const Spacer(),
                       IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (cartItem.quantity > 0) {
                             cartItem.quantity--;
                             cartItem.totalPrice;
+                            widget.refresh();
                           }
-                          widget.refresh;
                           setState(() {});
                         },
                         icon: const Icon(Icons.remove, color: Colors.red),
@@ -145,10 +148,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           cartItem.quantity++;
                           cartItem.totalPrice;
-                          widget.refresh;
+                          widget.refresh();
                           setState(() {});
                         },
                         icon: const Icon(Icons.add, color: Colors.green),
