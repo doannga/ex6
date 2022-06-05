@@ -23,20 +23,23 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         actions: [
           Stack(
+            alignment: Alignment.center,
             children: [
-              ElevatedButton(
-                child: const Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/cart_page');
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  primary: Colors.grey.shade600,
+              Positioned(
+                child: ElevatedButton(
+                  child: const Icon(Icons.shopping_cart),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cart_page');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    primary: Colors.grey.shade600,
+                  ),
                 ),
               ),
               Positioned(
-                right: 0,
-                top: 5,
+                right: 10,
+                top: 10,
                 child: Container(
                   padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
