@@ -5,8 +5,11 @@ import '../cart_state.dart';
 
 class CartItemWidget extends StatefulWidget {
   final CartItem cartItem;
+  final Function() refresh;
 
-  const CartItemWidget({Key? key, required this.cartItem}) : super(key: key);
+  const CartItemWidget(
+      {Key? key, required this.cartItem, required this.refresh})
+      : super(key: key);
 
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
@@ -17,9 +20,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   Widget build(BuildContext context) {
     var cartItem = widget.cartItem;
     var product = cartItem.product;
-    print(
-        'thuynga.dt: CartItemWidget id: ${cartItem.product.id}, quantity: ${cartItem.quantity}, price: ${cartItem.totalPrice}');
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         children: [
           Flexible(
@@ -120,6 +124,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                             cartItem.quantity--;
                             cartItem.totalPrice;
                           }
+                          widget.refresh;
                           setState(() {});
                         },
                         icon: const Icon(Icons.remove, color: Colors.red),
@@ -142,8 +147,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       IconButton(
                         onPressed: () {
                           cartItem.quantity++;
-                          //cartItem.totalPrice = cartItem.totalPrice;
-                          print('thuynga.dt: + button: ${cartItem.totalPrice}');
+                          cartItem.totalPrice;
+                          widget.refresh;
                           setState(() {});
                         },
                         icon: const Icon(Icons.add, color: Colors.green),

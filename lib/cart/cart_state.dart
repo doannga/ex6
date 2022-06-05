@@ -162,3 +162,10 @@ final cartList = [
   // ),
 ];
 final Map<int, CartItem> hmCart = {};
+double totalPrice() {
+  double total = 0;
+  for (CartItem cart in cartList) {
+    total += cart.totalPrice;
+  }
+  return total;
+}
