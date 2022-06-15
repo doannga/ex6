@@ -65,7 +65,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           cartList.remove(cartItem);
                           hmCart.remove(cartItem.product.id);
                           widget.refresh();
-                          setState(() {});
+                          //setState(() {});
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -126,9 +126,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           if (cartItem.quantity > 0) {
                             cartItem.quantity--;
                             cartItem.totalPrice;
-                            widget.refresh();
+                            setState(() {});
+                            // widget.refresh();
                           }
-                          setState(() {});
+                          //setState(() {});
                         },
                         icon: const Icon(Icons.remove, color: Colors.red),
                       ),
@@ -152,7 +153,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           cartItem.quantity++;
                           cartItem.totalPrice;
                           widget.refresh();
-                          setState(() {});
+                          //setState(() {});
                         },
                         icon: const Icon(Icons.add, color: Colors.green),
                       ),

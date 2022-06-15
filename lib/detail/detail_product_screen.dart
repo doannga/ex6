@@ -209,7 +209,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                   ),
                 ),
                 Positioned(
-                  right: 8git,
+                  right: 8,
                   child: Container(
                     padding: const EdgeInsets.all(1),
                     decoration: BoxDecoration(

@@ -1,163 +1,8 @@
 import 'package:ex6/data/cart_item.dart';
 
-final cartList = [
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-  // CartItem(
-  //   Product(
-  //     7,
-  //     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/what-is-the-5-2-diet-main-image-700-350-1875ca8.jpg?quality=90&resize=960,872',
-  //     'Áo phông xanh',
-  //     'Áo phông',
-  //     200,
-  //     250,
-  //     false,
-  //     [
-  //       Ingredient(
-  //         'https://product.hstatic.net/1000282430/product/290001360000_2b31a130c5f448d5a0c0d29a4a092b98_large.jpg',
-  //         'Arugula',
-  //       ),
-  //       Ingredient(
-  //         'https://southmill.com/wp-content/uploads/2019/10/GettyImages-620993654-Shiitake.jpg',
-  //         'Mushroom',
-  //       ),
-  //     ],
-  //     [
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
-  //       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-  //     ],
-  //   ),
-  // ),
-];
+import '../data/product.dart';
+
+final cartList = [];
 final Map<int, CartItem> hmCart = {};
 double totalPrice() {
   double total = 0;
@@ -165,4 +10,22 @@ double totalPrice() {
     total += cart.totalPrice;
   }
   return total;
+}
+
+class CartState {
+  final _cartList = [];
+  List get cartList => _cartList;
+
+  final Map<int, CartItem> hmCart = {};
+
+  void addProductToCart(Product p, int count) {
+    // business logic
+    // Nếu có rồi thì tăng qty của cartItem lên 1.
+    // Chưa có thì add vào
+  }
+
+  void removeProductInCart() {}
+  int increaseQty() {
+    return 0;
+  }
 }
