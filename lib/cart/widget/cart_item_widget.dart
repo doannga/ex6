@@ -1,16 +1,15 @@
 import 'package:ex6/data/cart_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../cart_state.dart';
 
 class CartItemWidget extends StatefulWidget {
-  final CartItem cartItem;
-  final Function() refresh;
+  // final CartItem cartItem;
+  //final Function() refresh;
 
   const CartItemWidget({
     Key? key,
-    required this.cartItem,
-    required this.refresh,
   }) : super(key: key);
 
   @override
@@ -20,7 +19,7 @@ class CartItemWidget extends StatefulWidget {
 class _CartItemWidgetState extends State<CartItemWidget> {
   @override
   Widget build(BuildContext context) {
-    var cartItem = widget.cartItem;
+    var cartItem = context.watch<CartItem>();
     var product = cartItem.product;
     return Card(
       shape: RoundedRectangleBorder(
@@ -62,9 +61,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       ),
                       IconButton(
                         onPressed: () {
-                          cartList.remove(cartItem);
-                          hmCart.remove(cartItem.product.id);
-                          widget.refresh();
+                          //CartState.removeProductToCart(cartItem);
+                          Provider.of<CartState>(context, listen: false)
+                              .removeProductToCart(cartItem);
+                          //widget.refresh();
                           //setState(() {});
                         },
                         icon: const Icon(
@@ -124,9 +124,11 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                       IconButton(
                         onPressed: () async {
                           if (cartItem.quantity > 0) {
-                            cartItem.quantity--;
-                            cartItem.totalPrice;
-                            setState(() {});
+                            Provider.of<CartState>(context, listen: false)
+                                .changeProductNumber(cartItem, -1);
+                            // cartItem.quantity--;
+                            // cartItem.totalPrice;
+                            // setState(() {});
                             // widget.refresh();
                           }
                           //setState(() {});
@@ -138,22 +140,36 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         borderRadius: BorderRadius.circular(5),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${cartItem.quantity}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
+                          child: Selector<CartItem, int>(
+                            selector: (_, cartItem) => cartItem.quantity,
+                            builder: (_, quantity, __) {
+                              return Text(
+                                '${cartItem.quantity}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              );
+                            },
                           ),
+                          // Text(
+                          //   '${cartItem.quantity}',
+                          //   style: const TextStyle(
+                          //     fontWeight: FontWeight.normal,
+                          //     fontSize: 18,
+                          //     color: Colors.black,
+                          //   ),
+                          // ),
                         ),
                       ),
                       IconButton(
                         onPressed: () async {
-                          cartItem.quantity++;
-                          cartItem.totalPrice;
-                          widget.refresh();
-                          //setState(() {});
+                          Provider.of<CartState>(context, listen: false)
+                              .changeProductNumber(cartItem, 1);
+                          // cartItem.quantity++;
+                          // cartItem.totalPrice;
+                          // widget.refresh();
                         },
                         icon: const Icon(Icons.add, color: Colors.green),
                       ),

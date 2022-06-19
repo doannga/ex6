@@ -1,7 +1,7 @@
 import 'package:ex6/cart/cart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../data/cart_item.dart';
 import 'cart_item_widget.dart';
 
 class CartListScreen extends StatefulWidget {
@@ -16,9 +16,9 @@ class _CartListScreenState extends State<CartListScreen> {
   Widget build(BuildContext context) {
     double checkoutPrice = 0;
     Size size = MediaQuery.of(context).size;
-    for (CartItem cart in cartList) {
-      checkoutPrice += cart.totalPrice;
-    }
+    // for (CartItem cart in cartList) {
+    //   checkoutPrice += cart.totalPrice;
+    // }
     return Scaffold(
       appBar: AppBar(
         leading: ElevatedButton(
@@ -36,16 +36,25 @@ class _CartListScreenState extends State<CartListScreen> {
         ),
         title: const Text('My Cart'),
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: cartList.length,
-        itemBuilder: (context, index) {
-          var cart = cartList[index];
-          //checkoutPrice += cart.totalPrice;
-          return CartItemWidget(
-            cartItem: cart,
-            refresh: () {
-              setState(() {});
+      body: Consumer<CartState>(
+        builder: (_, cartState, __) {
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: cartState.cartItemList.length,
+            itemBuilder: (context, index) {
+              var cart = cartState.cartItemList[index];
+              //checkoutPrice += cart.totalPrice;
+              return ChangeNotifierProvider.value(
+                value: cart,
+                // Dung provider thi ko can truyen tham so vao
+                child: const CartItemWidget(),
+              );
+              // return CartItemWidget(
+              //   cartItem: cart,
+              //   // refresh: () {
+              //   //   setState(() {});
+              //   // },
+              // );
             },
           );
         },
@@ -69,13 +78,22 @@ class _CartListScreenState extends State<CartListScreen> {
                     ),
                   ),
                   const Spacer(),
-                  Text(
-                    'Rs. $checkoutPrice',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+
+                  // Chi can build lai mot phan du lieu thi dung selector
+                  // Selector<CartItem, int>(
+                  //     builder: (builder), selector: selector)
+
+                  // Consumer dung khi build lại ca 1 item
+                  Consumer<CartState>(builder: (_, cartState, __) {
+                    return Text(
+                      //Provider.of<CartState>(context, listen: false).totalPrice()
+                      'Rs. ${cartState.totalPrice()}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    );
+                  })
                 ],
               ),
             ),

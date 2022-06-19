@@ -1,16 +1,15 @@
 import 'package:ex6/cart/cart_state.dart';
-import 'package:ex6/data/cart_item.dart';
 import 'package:ex6/detail/widget/ingredient_widget.dart';
 import 'package:ex6/detail/widget/step_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../data/product.dart';
+import '../edit/edit_product_screen.dart';
 
 class DetailProductScreen extends StatefulWidget {
-  const DetailProductScreen({Key? key, required this.product})
-      : super(key: key);
-  final Product product;
+  const DetailProductScreen({Key? key}) : super(key: key);
 
   @override
   State<DetailProductScreen> createState() => _DetailProductScreenState();
@@ -19,7 +18,7 @@ class DetailProductScreen extends StatefulWidget {
 class _DetailProductScreenState extends State<DetailProductScreen> {
   @override
   Widget build(BuildContext context) {
-    var product = widget.product;
+    var product = context.watch<Product>();
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -194,14 +193,8 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                 ElevatedButton(
                   child: const Icon(Icons.shopping_cart),
                   onPressed: () {
-                    if (hmCart[product.id] != null) {
-                      hmCart[product.id]?.quantity++;
-                    } else {
-                      var cart = CartItem(product);
-                      cartList.add(cart);
-                      hmCart[product.id] = cart;
-                    }
-                    setState(() {});
+                    Provider.of<CartState>(context, listen: false)
+                        .addToCart(product);
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
@@ -221,7 +214,8 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                       minHeight: 12,
                     ),
                     child: Text(
-                      '${cartList.length}',
+                      //'${cartList.length}',
+                      '${Provider.of<CartState>(context, listen: true).cartItemList.length}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 8,
@@ -242,6 +236,25 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
             //     },
             //   ),
             // ),
+          ),
+          Positioned(
+            top: 50,
+            right: 20,
+            child: ElevatedButton(
+              child: const Icon(Icons.edit),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ChangeNotifierProvider.value(
+                    value: product,
+                    child: const EditProductScreen(),
+                  );
+                }));
+              },
+              style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(),
+                primary: Colors.grey.shade600,
+              ),
+            ),
           ),
         ],
       ),

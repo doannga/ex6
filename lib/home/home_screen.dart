@@ -1,5 +1,6 @@
 import 'package:ex6/home/widget/product_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../cart/cart_state.dart';
 
@@ -51,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     minHeight: 12,
                   ),
                   child: Text(
-                    '${cartList.length}',
+                    //'${cartList.length}',
+                    '${Provider.of<CartState>(context, listen: false).cartItemList.length}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 8,

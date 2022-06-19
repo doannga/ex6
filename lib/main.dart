@@ -1,12 +1,24 @@
+import 'package:ex6/cart/cart_state.dart';
+import 'package:ex6/home/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'cart/cart_screen.dart';
 import 'home/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartState()),
+        ChangeNotifierProvider(create: (context) => HomeState()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
+//const MyApp()
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
